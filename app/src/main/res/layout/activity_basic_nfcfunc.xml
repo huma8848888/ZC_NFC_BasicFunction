@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BasicNFCFunc">
+
+    <include android:visibility="gone" layout="@layout/title_base"></include>
+
+    <LinearLayout
+        android:id="@+id/tView1"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:gravity="center"
+        android:paddingTop="10dip"
+        android:paddingBottom="10dip"
+        android:background="@drawable/rectangle">
+
+        <TextView
+            android:id="@+id/textView_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="#000099"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textlb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tView1"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentRight="true"
+        android:text="HF13.56newM"
+        android:textColor="#000099"
+        android:textSize="20sp" />
+
+
+</android.support.constraint.ConstraintLayout>

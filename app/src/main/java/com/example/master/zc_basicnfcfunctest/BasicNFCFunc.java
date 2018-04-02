@@ -14,8 +14,8 @@ import android.view.KeyEvent;
 import android.widget.TextView;
 
 
-import pda.hf.HFReader;
-import pda.hf.ISO15693CardInfo;
+import com.pda.hf.HFReader;
+import com.pda.hf.ISO15693CardInfo;
 import java.util.List;
 
 import test.hfsimple.Tools;

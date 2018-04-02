@@ -1,4 +1,4 @@
-package pda.hf;
+package com.pda.hf;
 
 public class ISO15693PICC
 {

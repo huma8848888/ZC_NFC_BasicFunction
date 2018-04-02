@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.example.master.zc_basicnfcfunctest.R;
 
-import pda.hf.HFReader;
+import com.pda.hf.HFReader;
 
 
 /**

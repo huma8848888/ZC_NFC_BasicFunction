@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 
 
-import pda.hf.HFReader;
+import com.pda.hf.HFReader;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -11,6 +11,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
@@ -27,11 +29,14 @@ public class BasicNFCFunc extends AppCompatActivity {
 
 
     private MyApplication mapp ;
-    private HFReader hfReader ;
+    private HFReader hfReader;
 
     ////
     private TextView textViewVersion;
-    private boolean djrun=false;
+    private TextView textlb;
+    //private ProgressBar progressBar;
+
+    private boolean djrun=false;//DJ是点检的意思
     private boolean djBroaded=false;
 
     private final int MSG_CARD = 1101 ;
@@ -45,7 +50,8 @@ public class BasicNFCFunc extends AppCompatActivity {
                     String cardType = msg.getData().getString("cardType");
                     Util.play(1, 0 );
                     textViewVersion.setText(uid);
-                    Broaddata();
+                    textlb.setText("卡类型"+cardType);
+                    //Broaddata();
                     if (djrun) {
                         isStart = false ;
                         running = false ;
@@ -56,9 +62,9 @@ public class BasicNFCFunc extends AppCompatActivity {
         }
     };
 
-    //���Ź㲥��Ϊ���ⲿapp��ȡ����
+    //卡号广播，为了外部app获取卡号
     private void Broaddata() {
-        if (djBroaded) return;//ֻ�㲥һ��
+        if (djBroaded) return;//只广播一次
         Intent intent=new Intent();
         intent.setAction("com.bjzc.frd");
         intent.putExtra("data", textViewVersion.getText());
@@ -70,7 +76,7 @@ public class BasicNFCFunc extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basic_nfcfunc);
-        //Log.d("Main",getApplication().toString());
+
         mapp = (MyApplication) getApplication() ;
         hfReader = mapp.getHfReader() ;
         Util.initSoundPool(this);
@@ -78,7 +84,7 @@ public class BasicNFCFunc extends AppCompatActivity {
     }
 
 
-    @Override
+   /*@Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode == KeyEvent.KEYCODE_BACK){
             isStart = false ;
@@ -86,11 +92,13 @@ public class BasicNFCFunc extends AppCompatActivity {
             mapp.exit();
         }
         return super.onKeyDown(keyCode, event);
-    }
+    }*/
 
     private void initView() {
         textViewVersion = (TextView) findViewById(R.id.textView_version);
-        //Ϊ���app�ṩ����
+        textlb=(TextView) findViewById(R.id.textlb);
+        //progressBar=(ProgressBar) findViewById(R.id.progressbar);
+        //为点检app提供服务。
         int djtag=getIntent().getIntExtra("DJruntag",0);
         if(djtag==1)djrun=true;
     }
@@ -121,8 +129,12 @@ public class BasicNFCFunc extends AppCompatActivity {
         byte[] uid15693 = null ;
         @Override
         public void run() {
-            while(running){
+            while (running){
+
                 if(isStart && hfReader != null){
+
+                    hfReader = mapp.getHfReader() ;
+
                     //14443A
                     uid14443 = hfReader.search14443Acard() ;
                     if (uid14443 != null) {

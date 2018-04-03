@@ -8,6 +8,7 @@
 
     <include android:visibility="gone" layout="@layout/title_base"></include>
 
+
     <LinearLayout
         android:id="@+id/tView1"
         android:orientation="horizontal"
@@ -28,6 +29,8 @@
             android:textSize="30sp" />
     </LinearLayout>
 
+
+
     <TextView
         android:id="@+id/textlb"
         android:layout_width="wrap_content"
@@ -36,9 +39,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:layout_alignParentRight="true"
-        android:text="HF13.56newM"
+        android:text="卡类型HF13.56newM"
         android:textColor="#000099"
         android:textSize="20sp" />
-
 
 </android.support.constraint.ConstraintLayout>

@@ -2,6 +2,7 @@ package test.hfsimple;
 
 import android.app.Activity;
 import android.app.Application;
+import android.widget.ProgressBar;
 
 
 import com.pda.hf.HFReader;
@@ -24,7 +25,10 @@ public class MyApplication extends Application {
     private int power = HFReader.POWER_PSAM ;
     private ParaSave para ;
 
+
     public HFReader getHfReader() {
+
+
         hfReader = new HFReader(13, 115200 , HFReader.POWER_RFID) ;
         if (hfReader == null) {
             hfReader = new HFReader(port, 115200, power) ;
